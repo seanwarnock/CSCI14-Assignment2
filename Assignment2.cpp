@@ -32,6 +32,8 @@ int main ()
   const float floatDarkEuropeanChocolate = 9.75;
   const float floatWhiteChocolate = 10.50;
   const float floatEuopeanTruffles = 12.50;
+
+
   float floatDiscountRate = 0;
 
   const float floatShippRate = .10;
@@ -44,15 +46,27 @@ int main ()
   {
 
     char boolCompleteOrder = false;
+
+    float floatMilkChocolateQuantity = 0;
+    float floatDarkEuropeanChocolateQuantity = 0;
+    float floatWhiteChocolateQuantity = 0;
+    float floatEuopeanTrufflesQuantity = 0;
+
     do
     {
+      float floatQuantiry = 0;
+
+
+
       system("cls");
-      //Description  - Price - Ext Price
-      cout << "[1] Milk Chocolate $" << "" << floatMilkChocolate << " per pound\n";
-      cout << "[2] Dark European Chocolate $" << "" << floatDarkEuropeanChocolate << " per pound\n";
-      cout << "[3] WhiteChocolate $" << "" << floatWhiteChocolate << " per pound\n";
-      cout << "[4] Euopean Truffles $" << "" << floatEuopeanTruffles << " per pound\n";
-      cout << "[9] Complete Order?";
+      cout.unsetf(ios::floatfield);
+      cout.precision(2);
+      cout << cout.width(4) << "Description " << "  - Price per lbs " << "- Ext Price\n";
+      cout << "[1]" << cout.width(3) << "Milk Chocolate $" << "" << floatMilkChocolate << " " << (floatMilkChocolate * floatMilkChocolateQuantity) << "\n";
+      cout << "[2]" << cout.width(3) << "Dark European Chocolate $" << "" << floatDarkEuropeanChocolate << " " << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << "\n";
+      cout << "[3]" << cout.width(3) << "WhiteChocolate $" << "" << floatWhiteChocolate << " " << (floatWhiteChocolate * floatWhiteChocolateQuantity) << "\n";
+      cout << "[4]" << cout.width(3) << "Euopean Truffles $" << "" << floatEuopeanTruffles << " " << (floatEuopeanTruffles * floatEuopeanTrufflesQuantity) << "\n";
+      cout << "[9]" << cout.width(3) << "Complete Order?";
 
       cin >> intMenuChoice;
 
@@ -71,7 +85,7 @@ int main ()
       }
 
     }
-    while (boolCompleteOrder = false);
+    while (boolCompleteOrder == false);
     /* Discount rates
   0 - 19.99 %0
   20 - 39.99 %10
