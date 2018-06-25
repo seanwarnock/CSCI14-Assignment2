@@ -17,6 +17,7 @@ ask user if you want another order?
 */
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 #ifdef _WIN32
   #include <windows.h>
   using namespace std;
@@ -31,13 +32,14 @@ int main ()
   const float floatMilkChocolate = 8.50;
   const float floatDarkEuropeanChocolate = 9.75;
   const float floatWhiteChocolate = 10.50;
-  const float floatEuopeanTruffles = 12.50;
+  const float floatEuropeanTruffles = 12.50;
 
 
   float floatDiscountRate = 0;
 
   const float floatShippRate = .10;
 
+  float floatMenuChoice;
   int intMenuChoice;
 
   char charRunAgain;
@@ -50,37 +52,82 @@ int main ()
     float floatMilkChocolateQuantity = 0;
     float floatDarkEuropeanChocolateQuantity = 0;
     float floatWhiteChocolateQuantity = 0;
-    float floatEuopeanTrufflesQuantity = 0;
+    float floatEuropeanTrufflesQuantity = 0;
+    float floatSubTotal = 0;
+    float floatTotal = 0;
 
     do
     {
-      float floatQuantiry = 0;
+      float floatQuantity = 0;
 
 
-
+//setup text display environment.
       system("cls");
       cout.unsetf(ios::floatfield);
       cout.precision(2);
+      cout.setf(ios::fixed, ios::floatfield);
+      cout.setf(ios::showpoint);
+
       cout << cout.width(4) << "Description " << "  - Price per lbs " << "- Ext Price\n";
-      cout << "[1]" << cout.width(3) << "Milk Chocolate $" << "" << floatMilkChocolate << " " << (floatMilkChocolate * floatMilkChocolateQuantity) << "\n";
-      cout << "[2]" << cout.width(3) << "Dark European Chocolate $" << "" << floatDarkEuropeanChocolate << " " << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << "\n";
-      cout << "[3]" << cout.width(3) << "WhiteChocolate $" << "" << floatWhiteChocolate << " " << (floatWhiteChocolate * floatWhiteChocolateQuantity) << "\n";
-      cout << "[4]" << cout.width(3) << "Euopean Truffles $" << "" << floatEuopeanTruffles << " " << (floatEuopeanTruffles * floatEuopeanTrufflesQuantity) << "\n";
-      cout << "[9]" << cout.width(3) << "Complete Order?";
+      cout << "[1]" << cout.width(3) << "Milk Chocolate $" << "" << floatMilkChocolate << " $" << (floatMilkChocolate * floatMilkChocolateQuantity) << "\n";
+      cout << "[2]" << cout.width(3) << "Dark European Chocolate $" << "" << floatDarkEuropeanChocolate << " $" << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << "\n";
+      cout << "[3]" << cout.width(3) << "WhiteChocolate $" << "" << floatWhiteChocolate << " $" << (floatWhiteChocolate * floatWhiteChocolateQuantity) << "\n";
+      cout << "[4]" << cout.width(3) << "Euopean Truffles $" << "" << floatEuropeanTruffles << " $" << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity) << "\n";
+      cout << "[9]" << cout.width(3) << "Complete Order?\n";
 
-      cin >> intMenuChoice;
+      floatSubTotal = (floatMilkChocolate * floatMilkChocolateQuantity) + (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) + (floatWhiteChocolate * floatWhiteChocolateQuantity) + (floatEuropeanTruffles * floatEuropeanTrufflesQuantity);
+      if (floatSubTotal  < 20)
+        {
+            floatDiscountRate = 0;
+            cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+        }
+        else if (floatSubTotal < 40)
+        {
+            floatDiscountRate = .10;
+          cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+        }
+        else if (floatSubTotal < 60)
+        {
+          floatDiscountRate = .15;
+          cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+        }
+        else if (floatSubTotal < 80)
+        {
+          floatDiscountRate = .20;
+          cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+        }
+        else
+        {
+            floatDiscountRate =.25;
+            cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+        }
 
+
+      cin >> floatMenuChoice;
+      intMenuChoice = floatMenuChoice;
       switch (intMenuChoice)
       {
-        case 1 : cout << "Milk";
+        case 1 : cout << "How much milk chocolate would you like to purchase in lbs? :";
+          cin >> floatQuantity;
+          floatMilkChocolateQuantity = floatMilkChocolateQuantity + fabs(floatQuantity);
           break;
-        case 2 : cout << "Dark";
+        case 2 : cout << "How much Dark European Chocolate would you like to purchase in lbs? :";
+          cin >> floatQuantity;
+          floatDarkEuropeanChocolateQuantity = floatDarkEuropeanChocolateQuantity + fabs(floatQuantity);
           break;
-        case 3 : cout << "White";
+        case 3 : cout << "How much White Chocolate would you like to purchase in lbs? :";
+          cin >> floatQuantity;
+          floatWhiteChocolateQuantity = floatWhiteChocolateQuantity + fabs(floatQuantity);
           break;
-        case 4 : cout << "Truffles";
+        case 4 : cout << "How much European Truffles would you like to purchase in lbs? :";
+          cin >> floatQuantity;
+          floatEuropeanTrufflesQuantity = floatEuropeanTrufflesQuantity + fabs(floatQuantity);
           break;
         case 9 : boolCompleteOrder = true;
+
+        //
+
+
 
       }
 
@@ -94,31 +141,48 @@ int main ()
   80 > %25
   */
 
-  //for forcing the range to a integer use multiply by 100 to make my dollar amount an integer.
+
 
     system("cls");
-    cout.precision(2);
-    cout.setf(ios::fixed, ios::floatfield);
-    cout.setf(ios::showpoint);
-
-
-
 //consider trying to use justification formatting for ios
-    cout << "Invoice Order\n";
 
-    cout << "lbs of Milk Chocolate Ordered @ $" << floatMilkChocolate << " per LB\n";
-    cout << "lbs of Dark European Chocolate Ordered @ $" << floatDarkEuropeanChocolate << " per LB\n";
-    cout << "lbs of White Chocolate Ordered @ $" << floatWhiteChocolate << " per LB\n";
-    cout << "lbs of Euopean Truffles Ordered @ $" << floatEuopeanTruffles << " per LB\n";
+    floatTotal = floatSubTotal - (floatSubTotal * floatDiscountRate);
+    cout << "Invoice Order\n\n";
 
-    cout << "Total Order is" << "$" << "Will be sum of order pre discount\n";
-    cout << "Less: Discount of " << floatDiscountRate << "%\n";
+    if (!(floatMilkChocolateQuantity <= 0))
+    {
+      cout << floatMilkChocolateQuantity << " lbs of Milk Chocolate Ordered @ $" << (floatMilkChocolate * floatMilkChocolateQuantity) << " per LB\n";
+    }
 
-    cout << "Order is" << "Some order total\n";
-    cout << "Shipping and Handling @ " << (floatShippRate * 10) << "%\n";
+    if (!(floatDarkEuropeanChocolateQuantity <= 0))
+    {
+      cout << floatDarkEuropeanChocolateQuantity << " lbs of Dark European Chocolate Ordered @ $" << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << " per LB\n";
+    }
 
-    cout << "Should I really ask if you want more Chocolate? [Y] or N: ";
+    if (!(floatWhiteChocolateQuantity <= 0))
+    {
+      cout << floatWhiteChocolateQuantity << " lbs of White Chocolate Ordered @ $" << (floatWhiteChocolate * floatWhiteChocolateQuantity) << " per LB\n";
+    }
+
+    if (!(floatEuropeanTrufflesQuantity <= 0))
+    {
+      cout << floatEuropeanTrufflesQuantity << " lbs of European Truffles Ordered @ $" << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity) << " per LB\n";
+    }
+
+    cout << "Total Order is $" << floatSubTotal << "\n";
+    cout << "Less: Discount of " << int(floatDiscountRate * 100) << "% $" <<  (floatSubTotal * floatDiscountRate) << "\n";
+    cout << "Order is $" << floatTotal << "\n";
+    cout << "Shipping and Handling @ " << int(floatShippRate * 100) << "% (based on $" << floatTotal << " $" << (floatShippRate * floatTotal) << "\n";
+    cout << "Grand Total is $" << (floatShippRate * floatTotal) + floatTotal << "\n";
+
+    cout << "You know you want to place another order for more Chocolate? [Y] or N: ";
     cin >> charRunAgain;
+
+//Yes I can add numbers to character!  Cheesy way to only check for one type of character in this case but ugly as heck.
+    if (!(charRunAgain < 91))
+    {
+      charRunAgain = charRunAgain - 32;
+    }
   }
   while (charRunAgain == 'Y');
   return 0; //Yup still here so stdout doesn't show this program exiting with an error.
