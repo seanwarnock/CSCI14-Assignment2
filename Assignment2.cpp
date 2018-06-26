@@ -11,7 +11,6 @@ Start program
 output order menu
 tell user amount to get next discount.
 take input from user until user selects "done"
-
 output invoice.
 ask user if you want another order?
 */
@@ -20,10 +19,17 @@ ask user if you want another order?
 #include <math.h>
 #ifdef _WIN32
   #include <windows.h>
-  using namespace std;
+  #include <winsock2.h>
 #endif
+#ifdef __linux__
 
+#endif
 using namespace std;
+
+int HTTP_Test ()
+{
+
+}
 
 int main ()
 {
@@ -68,38 +74,40 @@ int main ()
       cout.setf(ios::fixed, ios::floatfield);
       cout.setf(ios::showpoint);
 
-      cout << cout.width(4) << "Description " << "  - Price per lbs " << "- Ext Price\n";
-      cout << "[1]" << cout.width(3) << "Milk Chocolate $" << "" << floatMilkChocolate << " $" << (floatMilkChocolate * floatMilkChocolateQuantity) << "\n";
-      cout << "[2]" << cout.width(3) << "Dark European Chocolate $" << "" << floatDarkEuropeanChocolate << " $" << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << "\n";
-      cout << "[3]" << cout.width(3) << "WhiteChocolate $" << "" << floatWhiteChocolate << " $" << (floatWhiteChocolate * floatWhiteChocolateQuantity) << "\n";
-      cout << "[4]" << cout.width(3) << "Euopean Truffles $" << "" << floatEuropeanTruffles << " $" << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity) << "\n";
-      cout << "[9]" << cout.width(3) << "Complete Order?\n";
 
+      cout << setw(5) << ""    << setw(30) << "Description"             << setw(17) << "Price per lbs"            << setw(15) << "Ext Price"                                                              << endl;
+      cout << setw(5) << "[1]" << setw(30) << "Milk Chocolate"          << "  $" << setw(15) << right << floatMilkChocolate         << "  $" << setw(15) << right << (floatMilkChocolate * floatMilkChocolateQuantity)                 << endl;
+      cout << setw(5) << "[2]" << setw(30) << "Dark European Chocolate" << "  $" << setw(15) << right << floatDarkEuropeanChocolate << "  $" << setw(15) << right << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << endl;
+      cout << setw(5) << "[3]" << setw(30) << "WhiteChocolate"          << "  $" << setw(15) << right << floatWhiteChocolate        << "  $" << setw(15) << right << (floatWhiteChocolate * floatWhiteChocolateQuantity)               << endl;
+      cout << setw(5) << "[4]" << setw(30) << "European Truffles"       << "  $" << setw(15) << right << floatEuropeanTruffles      << "  $" << setw(15) << right << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity)           << endl;
+      cout << setw(5) << "[9]" << setw(30) << "Complete Order?" << endl;
+      cout << endl;
       floatSubTotal = (floatMilkChocolate * floatMilkChocolateQuantity) + (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) + (floatWhiteChocolate * floatWhiteChocolateQuantity) + (floatEuropeanTruffles * floatEuropeanTrufflesQuantity);
+
       if (floatSubTotal  < 20)
         {
-            floatDiscountRate = 0;
-            cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+           floatDiscountRate = 0;
+           cout << "Discount of %" << int(floatDiscountRate * 100) << endl;
         }
-        else if (floatSubTotal < 40)
+      else if (floatSubTotal < 40)
         {
-            floatDiscountRate = .10;
-          cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+          floatDiscountRate = .10;
+          cout << "Discount of %" << int(floatDiscountRate * 100) << endl;
         }
-        else if (floatSubTotal < 60)
+      else if (floatSubTotal < 60)
         {
           floatDiscountRate = .15;
-          cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+          cout << "Discount of %" << int(floatDiscountRate * 100) << endl;
         }
-        else if (floatSubTotal < 80)
+      else if (floatSubTotal < 80)
         {
           floatDiscountRate = .20;
-          cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+          cout << "Discount of %" << int(floatDiscountRate * 100) << endl;
         }
-        else
+      else
         {
-            floatDiscountRate =.25;
-            cout << "Discount of %" << int(floatDiscountRate * 100) << "\n";
+          floatDiscountRate =.25;
+          cout << "Discount of %" << int(floatDiscountRate * 100) << endl;
         }
 
 
@@ -124,24 +132,9 @@ int main ()
           floatEuropeanTrufflesQuantity = floatEuropeanTrufflesQuantity + fabs(floatQuantity);
           break;
         case 9 : boolCompleteOrder = true;
-
-        //
-
-
-
       }
-
     }
     while (boolCompleteOrder == false);
-    /* Discount rates
-  0 - 19.99 %0
-  20 - 39.99 %10
-  40 - 59.99 %15
-  60 - 79.99 %20
-  80 > %25
-  */
-
-
 
     system("cls");
 //consider trying to use justification formatting for ios
@@ -187,3 +180,4 @@ int main ()
   while (charRunAgain == 'Y');
   return 0; //Yup still here so stdout doesn't show this program exiting with an error.
 }
+
