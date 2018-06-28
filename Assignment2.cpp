@@ -140,33 +140,39 @@ int main ()
 //consider trying to use justification formatting for ios
 
     floatTotal = floatSubTotal - (floatSubTotal * floatDiscountRate);
-    cout << "Invoice Order\n\n";
+    cout << "Invoice Order" << endl;
+    cout << setw(23) << left << "Description"             << setw(15) << right << "Qty in lbs"            << setw(15) << right << "Ext Price" << endl;
 
     if (!(floatMilkChocolateQuantity <= 0))
     {
-      cout << floatMilkChocolateQuantity << " lbs of Milk Chocolate Ordered @ $" << (floatMilkChocolate * floatMilkChocolateQuantity) << " per LB\n";
+      cout << setw(23) << left << "Milk Chocolate" << setw(15) << right << floatMilkChocolateQuantity << setw(15) << right << (floatMilkChocolate * floatMilkChocolateQuantity) << endl;
+      //cout << floatMilkChocolateQuantity << " lbs of Milk Chocolate Ordered @ $" << (floatMilkChocolate * floatMilkChocolateQuantity) << " per LB\n";
     }
 
     if (!(floatDarkEuropeanChocolateQuantity <= 0))
     {
-      cout << floatDarkEuropeanChocolateQuantity << " lbs of Dark European Chocolate Ordered @ $" << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << " per LB\n";
+      cout << setw(23) << left << "Dark Chocolate" << setw(15) << right << floatDarkEuropeanChocolateQuantity << setw(15) << right << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << endl;
+      //cout << floatDarkEuropeanChocolateQuantity << " lbs of Dark European Chocolate Ordered @ $" << (floatDarkEuropeanChocolate * floatDarkEuropeanChocolateQuantity) << " per LB\n";
     }
 
     if (!(floatWhiteChocolateQuantity <= 0))
     {
-      cout << floatWhiteChocolateQuantity << " lbs of White Chocolate Ordered @ $" << (floatWhiteChocolate * floatWhiteChocolateQuantity) << " per LB\n";
+      cout << setw(23) << left << "Dark Chocolate" << setw(15) << right << floatWhiteChocolateQuantity << setw(15) << right << (floatWhiteChocolate * floatWhiteChocolateQuantity) << endl;
+      //cout << floatWhiteChocolateQuantity << " lbs of White Chocolate Ordered @ $" << (floatWhiteChocolate * floatWhiteChocolateQuantity) << " per LB\n";
     }
 
     if (!(floatEuropeanTrufflesQuantity <= 0))
     {
-      cout << floatEuropeanTrufflesQuantity << " lbs of European Truffles Ordered @ $" << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity) << " per LB\n";
+      cout << setw(23) << left << "Dark Chocolate" << setw(15) << right << floatEuropeanTrufflesQuantity << setw(15) << right << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity) << endl;
+      //cout << floatEuropeanTrufflesQuantity << " lbs of European Truffles Ordered @ $" << (floatEuropeanTruffles * floatEuropeanTrufflesQuantity) << " per LB\n";
     }
 
-    cout << "Total Order is $" << floatSubTotal << "\n";
-    cout << "Less: Discount of " << int(floatDiscountRate * 100) << "% $" <<  (floatSubTotal * floatDiscountRate) << "\n";
-    cout << "Order is $" << floatTotal << "\n";
-    cout << "Shipping and Handling @ " << int(floatShippRate * 100) << "% (based on $" << floatTotal << " $" << (floatShippRate * floatTotal) << "\n";
-    cout << "Grand Total is $" << (floatShippRate * floatTotal) + floatTotal << "\n";
+    cout << setw(23) << "Total Order is $" << setw(30) << right << floatSubTotal << "\n";
+    cout << setw(23) << "Less: Discount of " << setw(10) << right << int(floatDiscountRate * 100) << "% $"  << setw(17) << right <<  (floatSubTotal * floatDiscountRate) << "\n";
+    cout << setw(23) << "Order is $" << setw(30) << right << floatTotal << "\n";
+    cout << setw(23) << "Shipping and Handling @ " << setw(10) << right << int(floatShippRate * 100) << "% (based on $" << floatTotal << " $" << (floatShippRate * floatTotal) << "\n";
+    cout << "------------------------------------------------------------" << endl;
+    cout << setw(23) << "Grand Total is $" << setw(30) << right << (floatShippRate * floatTotal) + floatTotal << "\n";
 
     cout << "You know you want to place another order for more Chocolate? [Y] or N: ";
     cin >> charRunAgain;
@@ -180,4 +186,3 @@ int main ()
   while (charRunAgain == 'Y');
   return 0; //Yup still here so stdout doesn't show this program exiting with an error.
 }
-
